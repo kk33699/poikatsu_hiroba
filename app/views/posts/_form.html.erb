@@ -1,32 +1,27 @@
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
+      <h2><%= pluralize(post.errors.count, "エラー") %>が発生しました:</h2>
       <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title, "サービス名" %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :body %>
+    <%= form.label :body, "サービスの特徴や使いやすさ" %>
     <%= form.text_area :body %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "投稿する" %>
   </div>
 <% end %>
+

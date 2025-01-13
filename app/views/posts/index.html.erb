@@ -1,26 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Posts</h1>
+<h1>ポイ活サイト一覧</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>User</th>
-
+      <th>ユーザー名</th>
+      <th>サービス名</th>
+      <th>サービスの特徴や使いやすさ</th>
     </tr>
   </thead>
 
   <tbody>
     <% @posts.each do |post| %>
       <tr>
+        <td><%= post.user.name %></td>
         <td><%= post.title %></td>
         <td><%= post.body %></td>
-        <td><%= post.user_id %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <% if post.user == current_user %> 
+          <td>
+            <%= link_to 'Show', post %> |
+            <%= link_to 'Edit', edit_post_path(post) %> |
+            <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        <% else %>
+
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'おすすめポイ活サイトを投稿', new_post_path %>
