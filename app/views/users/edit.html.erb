@@ -1,0 +1,17 @@
+<h1>プロフィール編集</h1>
+
+<%= form_with(model: @user, url: user_path(@user), method: :patch) do |form| %>
+  <div class="field">
+    <%= form.label :name, "名前" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, "メールアドレス" %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "更新", class: "btn btn-primary" %>
+  </div>
+<% end %>

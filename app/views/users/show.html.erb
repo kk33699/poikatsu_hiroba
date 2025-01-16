@@ -1,0 +1,17 @@
+<h1>あなたのマイページ</h1>
+
+<h2>あなたの投稿一覧</h2>
+
+<% if @posts.present? %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li><%= link_to post.title, post_path(post) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>あなたの投稿はありません。</p>
+<% end %>
+<br>
+
+<%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-primary" %>
+<%= button_to '退会する', destroy_account_user_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: "btn btn-danger" %>
