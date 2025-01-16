@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'about', to: 'homes#about'
 
-  # ユーザー関連
+  
   resources :users, only: [:show, :edit, :update] do
     member do
       delete :destroy_account # ユーザー退会処理
@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'guest_login', to: 'users#guest_login'  # ゲストログイン用のルート
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

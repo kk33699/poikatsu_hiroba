@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:guest_login]
   before_action :set_user, only: %i[show edit update destroy destroy_account]
 
   # マイページ
@@ -34,6 +34,16 @@ class UsersController < ApplicationController
     else
       redirect_to root_path, alert: '退会に失敗しました。'
     end
+  end
+
+  # ゲストログイン処理
+  def guest_login
+    user = User.find_or_create_by!(email: 'guest@example.com') do |guest|
+      guest.name = 'ゲストユーザー'
+      guest.password = SecureRandom.urlsafe_base64
+    end
+    sign_in user
+    redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   private

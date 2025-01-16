@@ -34,4 +34,7 @@
 
 <br>
 
-<%= link_to 'おすすめポイ活サイトを投稿', new_post_path %>
+<% if current_user.email != 'guest@example.com' %>
+  <%= link_to 'おすすめポイ活サイトを投稿', new_post_path %>
+<% end %>
+

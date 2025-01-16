@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user! # ログインを必須にする
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[show edit update destroy]
+  before_action :ensure_guest_user, only: %i[edit update destroy]
 
   # GET /posts or /posts.json
   def index
@@ -14,10 +15,6 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-  end
-
-  # GET /posts/1/edit
-  def edit
   end
 
   # POST /posts or /posts.json
@@ -52,20 +49,28 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_path, status: :see_other, notice: "Post was successfully destroyed." }
+      format.html { redirect_to posts_path, status: :see_other, notice: "投稿が削除されました。" }
       format.json { head :no_content }
     end
   end
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = current_user.posts.find(params[:id]) # 自分の投稿のみ取得
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = current_user.posts.find(params[:id]) # 自分の投稿のみ取得
+  end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :body) # :user_idは不要
+  # ゲストユーザーの制限
+  def ensure_guest_user
+    if current_user.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーはこの操作を行えません。'
     end
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:title, :body) # :user_idは不要
+  end
 end
+
