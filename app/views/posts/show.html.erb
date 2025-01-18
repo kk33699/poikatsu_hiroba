@@ -1,23 +1,25 @@
-<h1>ポイ活サービス詳細</h1>
+<h1 class="mb-4 ms-3">ポイ活サービス詳細</h1>
 
-<p id="notice"><%= notice %></p>
+<p id="notice" class="ms-3"><%= notice %></p>
 
-<p>
-  <strong>ユーザー名:</strong>
-  <%= @post.user.name %>
-</p>
+<div class="card p-3 ms-3">
+  <p>
+    <strong>ユーザー名:</strong>
+    <%= @post.user.name %>
+  </p>
 
-<p>
-  <strong>サービス名:</strong>
-  <%= @post.title %>
-</p>
+  <p>
+    <strong>サービス名:</strong>
+    <%= @post.title %>
+  </p>
 
-<p>
-  <strong>サービスの特徴や使いやすさ:</strong>
-  <%= @post.body %>
-</p>
+  <p>
+    <strong>サービスの特徴や使いやすさ:</strong>
+    <%= @post.body %>
+  </p>
+</div>
 
-
-
-<%= link_to '編集する', edit_post_path(@post) %> | <!-- Edit -->
-<%= link_to '一覧に戻る', posts_path %> <!-- Back -->
+<div class="mt-3 ms-3">
+  <%= link_to '編集する', edit_post_path(@post) %>
+  <%= link_to '一覧に戻る', posts_path %>
+</div>

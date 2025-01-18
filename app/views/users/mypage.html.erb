@@ -1,19 +1,22 @@
-<h1>あなたのマイページ</h1>
+<h1 class="mb-4 ms-3">あなたのマイページ</h1>
 
-<h2>あなたの投稿一覧</h2>
+<div class="ms-3">
+  <h2>あなたの投稿一覧</h2>
 
-<% if @posts.present? %>
-  <ul>
-    <% @posts.each do |post| %>
-      <li><%= link_to post.title, post_path(post) %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>あなたの投稿はありません。</p>
-<% end %>
+  <% if @posts.present? %>
+    <ul class="list-unstyled">
+      <% @posts.each do |post| %>
+        <li><%= link_to post.title, post_path(post), class: "text-primary" %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>あなたの投稿はありません。</p>
+  <% end %>
 
-<br>
+  <br>
 
-<%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-primary" %>
-<%= button_to '退会する', destroy_account_user_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: "btn btn-danger" %>
-
+  <div class="mt-3">
+    <%= link_to 'プロフィールを編集', edit_user_path(@user) %>
+    <%= button_to '退会する', destroy_account_user_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' } %>
+  </div>
+</div>

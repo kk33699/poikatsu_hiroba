@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>ポイ活サイト一覧</h1>
+<h1 class="mb-4">ポイ活サイト一覧</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>ユーザー名</th>
       <th>サービス名</th>
       <th>サービスの特徴や使いやすさ</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -20,12 +21,12 @@
         
         <% if post.user == current_user %> 
           <td>
-            <%= link_to '投稿を確認する', post %> | <!-- Show -->
-            <%= link_to '編集する', edit_post_path(post) %> | <!-- Edit -->
-            <%= link_to '削除する', post, method: :delete, data: { confirm: 'Are you sure?' } %> <!-- Destroy -->
+            <%= link_to '投稿を確認する', post %> |
+            <%= link_to '編集する', edit_post_path(post) %> |
+            <%= link_to '削除する', post, method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
         <% else %>
-
+          <td></td>
         <% end %>
       </tr>
     <% end %>
@@ -35,6 +36,7 @@
 <br>
 
 <% if current_user.email != 'guest@example.com' %>
-  <%= link_to 'おすすめポイ活サイトを投稿', new_post_path %>
+  <div>
+    <%= link_to 'おすすめポイ活サイトを投稿', new_post_path %>
+  </div>
 <% end %>
-
