@@ -20,9 +20,9 @@
         
         <% if post.user == current_user %> 
           <td>
-            <%= link_to 'Show', post %> |
-            <%= link_to 'Edit', edit_post_path(post) %> |
-            <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to '投稿を確認する', post %> | <!-- Show -->
+            <%= link_to '編集する', edit_post_path(post) %> | <!-- Edit -->
+            <%= link_to '削除する', post, method: :delete, data: { confirm: 'Are you sure?' } %> <!-- Destroy -->
           </td>
         <% else %>
 
