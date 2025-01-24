@@ -3,11 +3,15 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller? # 追加
 
   def after_sign_in_path_for(resource)
-    root_path
+    mypage_users_path
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    root_path
+    about_path
+  end
+
+   def after_sign_up_path_for(resource)
+    mypage_users_path
   end
 
   protected
@@ -17,3 +21,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 end
+

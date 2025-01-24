@@ -22,8 +22,8 @@
         <% if post.user == current_user %> 
           <td>
             <%= link_to '投稿を確認する', post %> |
-            <%= link_to '編集する', edit_post_path(post) %> |
-            <%= link_to '削除する', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to '編集する', edit_post_path(post) %> 
+
           </td>
         <% else %>
           <td></td>
@@ -37,6 +37,6 @@
 
 <% if current_user.email != 'guest@example.com' %>
   <div>
-    <%= link_to 'おすすめポイ活サイトを投稿', new_post_path %>
+    <%= link_to 'おすすめポイ活サイトを投稿(新規投稿)', new_post_path %>
   </div>
 <% end %>

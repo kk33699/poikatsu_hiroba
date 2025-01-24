@@ -2,5 +2,9 @@
 
 <div class="ms-3">
   <%= render 'form', post: @post %>
-</div>
 
+
+  <div>
+    <%= link_to '削除する', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  </div>
+</div>

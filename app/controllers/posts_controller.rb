@@ -49,16 +49,20 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_path, status: :see_other, notice: "投稿が削除されました。" }
+      format.html { redirect_to mypage_users_path, status: :see_other, notice: "投稿が削除されました。" }
       format.json { head :no_content }
     end
   end
+  
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = current_user.posts.find(params[:id]) # 自分の投稿のみ取得
+    @post = Post.find_by(id: params[:id]) # 全ての投稿を対象に検索
+    if @post.nil? || @post.user != current_user
+      redirect_to posts_path, alert: "アクセス権がありません。"
+    end
   end
 
   # ゲストユーザーの制限

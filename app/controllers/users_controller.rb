@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def destroy_account
     if @user == current_user
       @user.destroy
-      redirect_to root_path, notice: '退会が完了しました。'
+      redirect_to new_user_registration_path, notice: '退会が完了しました。'
     else
       redirect_to root_path, alert: '退会に失敗しました。'
     end
@@ -50,7 +50,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
-    redirect_to root_path, alert: 'アクセス権がありません。' unless @user == current_user
+    unless @user == current_user
+      redirect_to mypage_users_path, alert: 'アクセス権がありません。'
+    end
   end
 
   def user_params
