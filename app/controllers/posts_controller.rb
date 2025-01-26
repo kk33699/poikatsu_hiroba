@@ -78,3 +78,4 @@ class PostsController < ApplicationController
   end
 end
 
+# memo
