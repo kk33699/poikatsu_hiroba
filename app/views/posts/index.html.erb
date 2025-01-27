@@ -19,15 +19,9 @@
         <td><%= post.title %></td>
         <td><%= post.body %></td>
         
-        <% if post.user == current_user %> 
-          <td>
-            <%= link_to '投稿を確認する', post %> |
-            <%= link_to '編集する', edit_post_path(post) %> 
-
-          </td>
-        <% else %>
-          <td></td>
-        <% end %>
+        <td>
+          <%= link_to '詳細を見る', post %>
+        </td>
       </tr>
     <% end %>
   </tbody>

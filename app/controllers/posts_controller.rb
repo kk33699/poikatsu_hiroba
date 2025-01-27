@@ -10,6 +10,9 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.find(params[:id]) 
+    @comment = Comment.new 
+    @comments = @post.comments.includes(:user)
   end
 
   # GET /posts/new
@@ -59,10 +62,10 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find_by(id: params[:id]) # 全ての投稿を対象に検索
-    if @post.nil? || @post.user != current_user
-      redirect_to posts_path, alert: "アクセス権がありません。"
-    end
+    # current_user.posts.find(params[:id]) を Post.find(params[:id]) に変更
+    @post = Post.find(params[:id]) # 自分以外の投稿も取得できる
+  rescue ActiveRecord::RecordNotFound
+    redirect_to posts_path, alert: 'その投稿は存在しません。'
   end
 
   # ゲストユーザーの制限
