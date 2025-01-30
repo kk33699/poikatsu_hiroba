@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :mypage # マイページ
+      get :search # ユーザー検索機能
     end
   end
 
