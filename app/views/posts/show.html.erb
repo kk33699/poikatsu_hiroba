@@ -31,7 +31,7 @@
   <% end %>
 </div>
 
-<!-- コメント機能追加 -->
+<!-- コメント追加 -->
 <h2>コメント一覧</h2>
 <div>
   <% @post.comments.each do |comment| %>
@@ -45,7 +45,7 @@
 <h2>コメントを追加する</h2>
 <div>
   <%= form_with model: [@post, @comment], local: true do |f| %>
-    <%= f.text_area :content, rows: 3, placeholder: 'コメントを入力してください' %>
+    <%= f.text_area :content, placeholder: 'コメントを入力してください' %>
     <%= f.submit '送信' %>
   <% end %>
 </div>
