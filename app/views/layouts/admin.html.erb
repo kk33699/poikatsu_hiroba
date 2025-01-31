@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>管理者ダッシュボード</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <% if admin_signed_in? %>
+    <nav>
+      <ul>
+        <li><%= link_to "ダッシュボード", admin_dashboards_path %></li>
+        <li><%= link_to "ユーザー管理", admin_dashboards_path %></li>
+        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+      </ul>
+    </nav>
+  <% end %>
+
+  <%= yield %>
+</body>
+</html>

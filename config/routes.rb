@@ -4,6 +4,24 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'about', to: 'homes#about'
 
+  # 管理者ログイン
+  devise_for :admin, skip: [:registrations, :password], controllers: {
+    sessions: 'admin/sessions'
+  }
+
+
+  # 管理者ユーザー管理
+  namespace :admin do
+    get 'dashboards', to: 'dashboards#index'
+    resources :users, only: [:destroy]
+  end
+
+  # エンドユーザーの管理
+  namespace :public do
+    resources :users, only: [:show]
+  end
+
+
   resources :posts do
     collection do
       get :search # 投稿検索機能
@@ -22,5 +40,5 @@ Rails.application.routes.draw do
   end
 
   post 'guest_login', to: 'users#guest_login'  # ゲストログイン
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
