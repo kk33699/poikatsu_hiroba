@@ -1,26 +1,30 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user! # ログインを必須にする
+  before_action :authenticate_user! # ログインを必須
   before_action :set_post, only: %i[show edit update destroy]
   before_action :ensure_guest_user, only: %i[edit update destroy]
 
-  # GET /posts or /posts.json
+
   def index
-    @posts = Post.all
+    if params[:query].present?
+      keyword = "%#{params[:query]}%"
+      @posts = Post.where("title LIKE ? OR body LIKE ?", keyword, keyword)
+    else
+      @posts = Post.all
+    end
   end
 
-  # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params[:id]) 
     @comment = Comment.new 
     @comments = @post.comments.includes(:user)
   end
 
-  # GET /posts/new
+
   def new
     @post = Post.new
   end
 
-  # POST /posts or /posts.json
+
   def create
     @post = current_user.posts.build(post_params) # ログイン中のユーザーに紐付け
 
@@ -35,7 +39,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
+
   def update
     respond_to do |format|
       if @post.update(post_params)
@@ -48,7 +52,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1 or /posts/1.json
+
   def destroy
     @post.destroy
     respond_to do |format|
@@ -60,10 +64,9 @@ class PostsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_post
-    # current_user.posts.find(params[:id]) を Post.find(params[:id]) に変更
-    @post = Post.find(params[:id]) # 自分以外の投稿も取得できる
+    @post = Post.find(params[:id]) 
   rescue ActiveRecord::RecordNotFound
     redirect_to posts_path, alert: 'その投稿は存在しません。'
   end
@@ -75,10 +78,8 @@ class PostsController < ApplicationController
     end
   end
 
-  # Only allow a list of trusted parameters through.
+
   def post_params
-    params.require(:post).permit(:title, :body) # :user_idは不要
+    params.require(:post).permit(:title, :body)
   end
 end
-
-# memo

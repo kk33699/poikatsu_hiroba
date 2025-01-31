@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'about', to: 'homes#about'
 
   resources :posts do
+    collection do
+      get :search # 投稿検索機能
+    end
     resources :comments, only: [:create, :destroy] # コメント機能
   end
   

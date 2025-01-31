@@ -36,6 +36,17 @@ class UsersController < ApplicationController
     end
   end
 
+  # ユーザー検索機能
+  def search
+    if params[:query].present?
+      @users = User.where("name LIKE ?", "%#{params[:query]}%")
+                   .where.not(email: "guest@example.com") # ゲストユーザー除外
+    else
+      @users = User.where.not(email: "guest@example.com") # 検索していない場合ゲストユーザー除外
+    end
+  end
+
+
   # ゲストログイン処理
   def guest_login
     user = User.find_or_create_by!(email: 'guest@example.com') do |guest|
