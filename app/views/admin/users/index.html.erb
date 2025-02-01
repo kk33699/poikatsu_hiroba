@@ -1,0 +1,23 @@
+<h1>管理者用ユーザー一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th>名前</th>
+      <th>メールアドレス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= link_to "削除(退会)", admin_user_path(user), method: :delete, data: { confirm: "本当に削除(退会)させますか？" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

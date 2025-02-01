@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>管理者ダッシュボード</title>
+  <title>管理者画面</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -12,8 +12,7 @@
   <% if admin_signed_in? %>
     <nav>
       <ul>
-        <li><%= link_to "ダッシュボード", admin_dashboards_path %></li>
-        <li><%= link_to "ユーザー管理", admin_dashboards_path %></li>
+        <li><%= link_to "管理者用ユーザー一覧", admin_users_path %></li>
         <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
       </ul>
     </nav>
