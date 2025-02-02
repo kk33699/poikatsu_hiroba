@@ -1,7 +1,11 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
+  acts_as_taggable_on :tags
+
+  REWARD_RATES = ["高還元率（1%以上）", "中還元率（0.5%〜1%）", "低還元率（0.5%未満）"]
 
   validates :title, presence: true, length: { maximum: 100 }
   validates :body, presence: true
+  validates :reward_rate, inclusion: { in: REWARD_RATES, allow_blank: true }
 end

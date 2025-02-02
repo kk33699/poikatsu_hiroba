@@ -3,13 +3,16 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :ensure_guest_user, only: %i[edit update destroy]
 
-
   def index
+    @posts = Post.all
+  
     if params[:query].present?
       keyword = "%#{params[:query]}%"
-      @posts = Post.where("title LIKE ? OR body LIKE ?", keyword, keyword)
-    else
-      @posts = Post.all
+      @posts = @posts.where("title LIKE ? OR body LIKE ?", keyword, keyword)
+    end
+  
+    if params[:reward_rate].present?
+      @posts = @posts.where(reward_rate: params[:reward_rate])
     end
   end
 
@@ -19,11 +22,9 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:user)
   end
 
-
   def new
     @post = Post.new
   end
-
 
   def create
     @post = current_user.posts.build(post_params) # ログイン中のユーザーに紐付け
@@ -39,7 +40,6 @@ class PostsController < ApplicationController
     end
   end
 
-
   def update
     respond_to do |format|
       if @post.update(post_params)
@@ -52,7 +52,6 @@ class PostsController < ApplicationController
     end
   end
 
-
   def destroy
     @post.destroy
     respond_to do |format|
@@ -60,10 +59,13 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
 
   private
 
+  # タグ選択
+  def post_params
+    params.require(:post).permit(:title, :body, :reward_rate)
+  end
 
   def set_post
     @post = Post.find(params[:id]) 
@@ -76,10 +78,5 @@ class PostsController < ApplicationController
     if current_user.email == 'guest@example.com'
       redirect_to root_path, alert: 'ゲストユーザーはこの操作を行えません。'
     end
-  end
-
-
-  def post_params
-    params.require(:post).permit(:title, :body)
   end
 end

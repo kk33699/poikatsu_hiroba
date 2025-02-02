@@ -5,9 +5,18 @@
 <!-- 投稿検索 -->
 <%= form_with url: posts_path, method: :get, local: true do %>
   <%= text_field_tag :query, params[:query], placeholder: "キーワードを入力" %>
+
+  <!-- ポイント還元率の検索用セレクトボックス -->
+  <%= select_tag :reward_rate, options_for_select([
+      ['すべて', ''],
+      ['高還元率（1%以上）', '高還元率（1%以上）'],
+      ['中還元率（0.5%〜1%）', '中還元率（0.5%〜1%）'],
+      ['低還元率（0.5%未満）', '低還元率（0.5%未満）']
+    ], params[:reward_rate]), include_blank: true
+  %>
+
   <%= submit_tag "検索" %>
 <% end %>
-
 
 <table class="table">
   <thead>
@@ -15,6 +24,7 @@
       <th>ユーザー名</th>
       <th>サービス名</th>
       <th>サービスの特徴や使いやすさ</th>
+      <th>ポイント還元率</th>
       <th></th>
     </tr>
   </thead>
@@ -25,7 +35,7 @@
         <td><%= post.user.name %></td>
         <td><%= post.title %></td>
         <td><%= post.body %></td>
-        
+        <td><%= post.reward_rate.presence || "未設定" %></td>
         <td>
           <%= link_to '詳細を見る', post %>
         </td>
