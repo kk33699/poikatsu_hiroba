@@ -14,14 +14,15 @@
   </p>
 
   <p>
+    <strong>ポイント還元率:</strong>
+    <%= @post.reward_rate.presence || "未設定" %> 
+  </p>
+  
+  <p>
     <strong>サービスの特徴や使いやすさ:</strong>
     <%= @post.body %>
   </p>
 
-  <p>
-    <strong>ポイント還元率:</strong>
-    <%= @post.reward_rate.presence || "未設定" %> 
-  </p>
 
 </div>
 
