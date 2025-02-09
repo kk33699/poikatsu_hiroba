@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @post.update(post_params)
+      if @post.update(post_params) # レビュー
         format.html { redirect_to @post, notice: "投稿が編集されました" }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -62,9 +62,9 @@ class PostsController < ApplicationController
 
   private
 
-  # タグ選択
+  # レビュー
   def post_params
-    params.require(:post).permit(:title, :body, :reward_rate)
+    params.require(:post).permit(:title, :body, :reward_rate, :rate) 
   end
 
   def set_post

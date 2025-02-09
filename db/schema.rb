@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_09_053059) do
+ActiveRecord::Schema.define(version: 2025_02_09_095329) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2025_02_09_053059) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "reward_rate"
+    t.integer "rate"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

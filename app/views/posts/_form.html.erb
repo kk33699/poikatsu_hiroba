@@ -11,35 +11,51 @@
   <% end %>
 
   <!-- サービス名 -->
-  <div class="mb-3 row">
-    <%= form.label :title, "サービス名", class: "col-sm-2 col-form-label text-end" %>
-    <div class="col-sm-10">
-      <%= form.text_field :title, class: "form-control" %>
-    </div>
+  <div>
+    <%= form.label :title, "サービス名" %>
+    <%= form.text_field :title %>
   </div>
 
   <!-- サービスの特徴や使いやすさ -->
-  <div class="mb-3 row">
-    <%= form.label :body, "サービスの特徴や使いやすさ", class: "col-sm-2 col-form-label text-end" %>
-    <div class="col-sm-10">
-      <%= form.text_area :body, class: "form-control" %>
-    </div>
+  <div>
+    <%= form.label :body, "サービスの特徴や使いやすさ" %>
+    <%= form.text_area :body %>
   </div>
 
-  <!-- タグ選択 -->
-  <div class="mb-3 row">
-    <%= form.label :reward_rate, "ポイント還元率", class: "col-sm-2 col-form-label text-end" %>
-    <div class="col-sm-10">
-      <%= form.select :reward_rate, ["高還元率（1%以上）", "中還元率（0.5%〜1%）", "低還元率（0.5%未満）"], { prompt: "選択してください" }, class: "form-select" %>
-    </div>
+  <!-- ポイント還元率 -->
+  <div>
+    <%= form.label :reward_rate, "ポイント還元率" %>
+    <%= form.select :reward_rate, ["高還元率（1%以上）", "中還元率（0.5%〜1%）", "低還元率（0.5%未満）"], { prompt: "選択してください" } %>
+  </div>
+
+  <!-- レビュー -->
+  <div>
+    <%= form.label :rate, "評価（5段階）" %>
+    <div id="post_raty"></div>
+    <%= form.hidden_field :rate, id: "rate_value" %>
   </div>
 
   <!-- 投稿するボタンとBackリンク -->
-  <div class="mb-3 row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-10">
-      <%= form.submit "投稿する" %>
-      <%= link_to 'Back', posts_path %>
-    </div>
+  <div>
+    <%= form.submit "投稿する" %>
+    <%= link_to 'Back', posts_path %>
   </div>
 <% end %>
+
+<!-- レビュー -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let elem = document.querySelector("#post_raty");
+    let opt = {
+      starHalf: "/assets/star-half.png",  // 半分の星
+      starOff: "/assets/star-off.png",    // 何もついていない星
+      starOn: "/assets/star-on.png",      // ついている星
+      scoreName: "post[rate]",            // フォームに送る値
+      score: <%= post.rate || 0 %>,       // 初期値（投稿時または編集時）
+      click: function(score) {
+        document.querySelector("#rate_value").value = score;
+      }
+    };
+    raty(elem, opt);
+  });
+</script>

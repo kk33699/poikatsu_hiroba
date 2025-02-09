@@ -22,6 +22,13 @@
     <strong>サービスの特徴や使いやすさ:</strong>
     <%= @post.body %>
   </p>
+
+  <!-- ⭐ 評価（5段階）を追加 -->
+  <p>
+    <strong>評価（5段階）:</strong>
+    <div id="post_raty"></div>
+  </p>
+
   <% if @post.favorited_by?(current_user) %>
     <%= link_to post_favorite_path(@post), method: :delete do %>
       ♥<%= @post.favorites.count %> いいね
@@ -43,6 +50,21 @@
     <%= link_to '削除する', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } %>
   <% end %>
 </div>
+
+<!-- レビュー -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let elem = document.querySelector("#post_raty");
+    let opt = {
+      starHalf: "/assets/star-half.png",  // 半分の星
+      starOff: "/assets/star-off.png",    // 何もついていない星
+      starOn: "/assets/star-on.png",      // ついている星
+      readOnly: true, // 変更不可
+      score: <%= @post.rate || 0 %> // `rate` の値を反映
+    };
+    raty(elem, opt);
+  });
+</script>
 
 <!-- コメント追加 -->
 <h2>コメント一覧</h2>
