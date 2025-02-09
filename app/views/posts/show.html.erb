@@ -23,16 +23,14 @@
     <%= @post.body %>
   </p>
   <% if @post.favorited_by?(current_user) %>
-    <%= link_to post_favorite_path(@post), method: :delete, class: "btn btn-danger" do %>
-      ♥<%= @post.favorites.count %>
+    <%= link_to post_favorite_path(@post), method: :delete do %>
+      ♥<%= @post.favorites.count %> いいね
     <% end %>
   <% else %>
-    <%= link_to post_favorite_path(@post), method: :post, class: "btn btn-outline-danger" do %>
-      ♡<%= @post.favorites.count %>
+    <%= link_to post_favorite_path(@post), method: :post do %>
+      ♡<%= @post.favorites.count %> いいね
     <% end %>
   <% end %>
-
-
 </div>
 
 <div class="mt-3 ms-3">

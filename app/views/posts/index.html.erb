@@ -40,15 +40,15 @@
         <td><%= post.reward_rate.presence || "未設定" %></td>
         <td>
           <% if post.favorited_by?(current_user) %>
-            <%= link_to post_favorite_path(post), method: :delete do %>
-              ♥<%= post.favorites.count %>
+            <%= link_to post_favorite_path(post), method: :delete, data: { turbo_method: :delete } do %>
+              ♥<%= post.favorites.count %> いいね
             <% end %>
           <% else %>
-            <%= link_to post_favorite_path(post), method: :post do %>
-              ♡<%= post.favorites.count %>
+            <%= link_to post_favorite_path(post), method: :post, data: { turbo_method: :post } do %>
+              ♡<%= post.favorites.count %> いいね
             <% end %>
           <% end %>
-        </td>
+      </td>
         <td>
           <%= link_to '詳細を見る', post %>
         </td>
