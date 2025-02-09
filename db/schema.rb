@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_02_095717) do
+ActiveRecord::Schema.define(version: 2025_02_09_053059) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 2025_02_02_095717) do
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_favorites_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_favorites_on_user_id_and_post_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -75,6 +85,8 @@ ActiveRecord::Schema.define(version: 2025_02_02_095717) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "taggings", "tags"
 end

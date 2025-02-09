@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     collection do
       get :search # 投稿検索機能
     end
+
+    resource :favorite, only: [:create, :destroy] # いいね機能
     resources :comments, only: [:create, :destroy] # コメント機能
   end
   
