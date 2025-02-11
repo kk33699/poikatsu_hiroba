@@ -6,11 +6,11 @@
 <%= form_with url: posts_path, method: :get, local: true do %>
   <%= text_field_tag :query, params[:query], placeholder: "キーワードを入力" %>
 
-  <!-- ポイント還元率の検索用セレクトボックス 変更する -->
+  <!-- ポイント還元率の検索用セレクトボックス -->
   <h1>システム要件ミスったので変更</h1>
   <%= select_tag :reward_rate, options_for_select([
       ['すべて', ''],
-      ['高還元率（1%以上）', '高還元率（1%以上）'],
+      ['高還元率（1%以上）', '高還元率（0.5%〜1%）'],
       ['中還元率（0.5%〜1%）', '中還元率（0.5%〜1%）'],
       ['低還元率（0.5%未満）', '低還元率（0.5%未満）']
     ], params[:reward_rate]), include_blank: true
@@ -52,19 +52,19 @@
         </td>
         <td>
           <div id="post_raty_<%= post.id %>"></div>
-          <script>
-            document.addEventListener("DOMContentLoaded", function() {
-              let elem = document.querySelector("#post_raty_<%= post.id %>");
-              let opt = {
-                starHalf: "/assets/star-half.png",
-                starOff: "/assets/star-off.png",
-                starOn: "/assets/star-on.png",
-                readOnly: true, // 変更不可
-                score: <%= post.rate || 0 %> // `rate` の値を反映
-              };
-              raty(elem, opt);
-            });
-          </script>
+        <script>
+          (function() {  
+            const elem = document.querySelector("#post_raty_<%= post.id %>");
+            const opt = {
+              starHalf: "/assets/star-half.png",
+              starOff: "/assets/star-off.png",
+              starOn: "/assets/star-on.png",
+              readOnly: true,
+              score: <%= post.rate || 0 %>
+            };
+            raty(elem, opt);
+          })();
+        </script>
         </td>
         <td>
           <%= link_to '詳細を見る', post %>
