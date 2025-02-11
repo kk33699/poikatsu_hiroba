@@ -43,19 +43,20 @@
 <% end %>
 
 <!-- レビュー -->
+<div id="post_raty"></div>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    let elem = document.querySelector("#post_raty");
-    let opt = {
-      starHalf: "/assets/star-half.png",  // 半分の星
-      starOff: "/assets/star-off.png",    // 何もついていない星
-      starOn: "/assets/star-on.png",      // ついている星
-      scoreName: "post[rate]",            // フォームに送る値
-      score: <%= post.rate || 0 %>,       // 初期値（投稿時または編集時）
-      click: function(score) {
-        document.querySelector("#rate_value").value = score;
-      }
-    };
-    raty(elem, opt);
-  });
+if(document.getElementById("post_raty") != null){
+
+
+   document.querySelector("#post_raty").textContent = '';
+  let elem = document.querySelector("#post_raty");
+  let opt = {
+    starHalf: "/assets/star-half.png",  
+    starOff: "/assets/star-off.png",    
+    starOn: "/assets/star-on.png",      
+    scoreName: "post[rate]"            
+  };
+  raty(elem, opt);
+
+}
 </script>
