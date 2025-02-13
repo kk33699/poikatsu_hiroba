@@ -3,18 +3,36 @@
 <table>
   <thead>
     <tr>
-      <th>投稿者</th>
+      <th>投稿者名</th>
       <th>サービス名</th>
-      <th>評価</th>
-      <th>削除</th>
+      <th>サービスの特徴や使いやすさ</th>
+      <th>評価（5段階）</th>
+      <th></th>
     </tr>
   </thead>
+
   <tbody>
     <% @reviews.each do |review| %>
       <tr>
         <td><%= review.user.name %></td>
         <td><%= review.title %></td>
-        <td><%= review.rate %></td>
+        <td><%= review.body %></td>
+        <td>
+          <div id="post_raty_<%= review.id %>"></div>
+          <script>
+            (function() {  
+              const elem = document.querySelector("#post_raty_<%= review.id %>");
+              const opt = {
+                starHalf: "/assets/star-half.png",
+                starOff: "/assets/star-off.png",
+                starOn: "/assets/star-on.png",
+                readOnly: true,
+                score: <%= review.rate || 0 %>
+              };
+              raty(elem, opt);
+            })();
+          </script>
+        </td>
         <td>
           <%= link_to "削除", admin_review_path(review), method: :delete, data: { confirm: "本当に削除しますか？" } %>
         </td>
