@@ -1,0 +1,24 @@
+<h1>レビュー管理者機能</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>投稿者</th>
+      <th>サービス名</th>
+      <th>評価</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.user.name %></td>
+        <td><%= review.title %></td>
+        <td><%= review.rate %></td>
+        <td>
+          <%= link_to "削除", admin_review_path(review), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

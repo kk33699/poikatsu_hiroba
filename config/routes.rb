@@ -10,11 +10,12 @@ Rails.application.routes.draw do
   }
 
 
-  # 管理者ユーザー管理
+  # 管理者管理
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
     get 'users', to: 'users#index'
     resources :users, only: [:index, :show, :destroy]
+    resources :reviews, only: [:index, :destroy] # レビュー管理者
   end
 
   # エンドユーザーの管理
