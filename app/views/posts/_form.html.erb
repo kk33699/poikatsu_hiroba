@@ -28,6 +28,12 @@
     <%= form.select :reward_rate, ["高還元率（1%以上）", "中還元率（0.5%〜1%）", "低還元率（0.5%未満）"], { prompt: "選択してください" } %>
   </div>
 
+  <!-- タグ入力 -->
+  <div>
+    <%= form.label :tag_list, "タグ" %>
+    <%= form.text_field :tag_list %>
+  </div>
+
   <!-- レビュー -->
   <div>
     <%= form.label :rate, "評価（5段階）" %>
@@ -46,7 +52,6 @@
 <div id="post_raty"></div>
 <script>
 if(document.getElementById("post_raty") != null){
-
    document.querySelector("#post_raty").textContent = '';
    let elem = document.querySelector("#post_raty");
    let opt = {

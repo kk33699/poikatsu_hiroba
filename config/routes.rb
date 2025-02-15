@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :posts do
     collection do
       get :search # 投稿検索機能
+      get :tagged, to: 'posts#index', as: :tagged # タグ検索
     end
 
     resource :favorite, only: [:create, :destroy] # いいね機能

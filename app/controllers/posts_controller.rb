@@ -6,13 +6,20 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
   
+    # キーワード検索
     if params[:query].present?
       keyword = "%#{params[:query]}%"
       @posts = @posts.where("title LIKE ? OR body LIKE ?", keyword, keyword)
     end
   
+    # ポイント還元率検索
     if params[:reward_rate].present?
       @posts = @posts.where(reward_rate: params[:reward_rate])
+    end
+  
+    # タグ検索
+    if params[:tag].present?
+      @posts = @posts.tagged_with(params[:tag])
     end
   end
 
@@ -62,9 +69,9 @@ class PostsController < ApplicationController
 
   private
 
-  # レビュー
+  # タグを許可
   def post_params
-    params.require(:post).permit(:title, :body, :reward_rate, :rate) 
+    params.require(:post).permit(:title, :body, :reward_rate, :rate, :tag_list) 
   end
 
   def set_post
