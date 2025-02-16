@@ -2,9 +2,10 @@
 
 <h1 class="mb-4">ポイ活サイト一覧</h1>
 
-<!-- 投稿検索 -->
+
 <%= form_with url: posts_path, method: :get, local: true do %>
-  <%= text_field_tag :query, params[:query], placeholder: "キーワードを入力" %>
+  <!-- 投稿検索 -->
+  <%= text_field_tag :query, params[:query], placeholder:"キーワードを入力" %>
 
   <!-- ポイント還元率の検索用 -->
   <%= select_tag :reward_rate, options_for_select([
@@ -12,11 +13,11 @@
       ['高還元率（1%以上）', '高還元率（1%以上）'],
       ['中還元率（0.5%〜1%）', '中還元率（0.5%〜1%）'],
       ['低還元率（0.5%未満）', '低還元率（0.5%未満）']
-    ], params[:reward_rate]), include_blank: true
+    ], params[:reward_rate])
   %>
 
   <!-- タグ検索 -->
-  <%= text_field_tag :tag, params[:tag] %>
+  <%= text_field_tag :tag, params[:tag], placeholder:"関連キーワード(タグ)を入力" %>
 
   <%= submit_tag "検索" %>
 <% end %>
@@ -28,7 +29,7 @@
       <th>サービス名</th>
       <th>サービスの特徴や使いやすさ</th>
       <th>ポイント還元率</th>
-      <th>タグ</th>
+      <th>関連キーワード（タグ）</th>
       <th>いいね機能</th> 
       <th>評価（5段階）</th> 
       <th></th>
@@ -43,7 +44,7 @@
         <td><%= post.body %></td>
         <td><%= post.reward_rate.presence || "未設定" %></td>
 
-        <!-- タグ -->
+        <!-- 投稿検索機能(タグ検索) -->
         <td>
           <% post.tag_list.each do |tag| %>
             <%= link_to tag, posts_path(tag: tag) %>
@@ -90,6 +91,6 @@
 
 <% if current_user.email != 'guest@example.com' %>
   <div>
-    <%= link_to 'おすすめポイ活サイトを投稿(新規投稿)', new_post_path %>
+    <%= link_to 'おすすめなポイ活サイトを投稿(新規投稿)', new_post_path %>
   </div>
 <% end %>

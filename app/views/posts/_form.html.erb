@@ -1,7 +1,7 @@
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "エラー") %>が発生しました:</h2>
+      <h2><%= post.errors.count %> 件のエラーが発生しました:</h2>
       <ul>
         <% post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -28,9 +28,9 @@
     <%= form.select :reward_rate, ["高還元率（1%以上）", "中還元率（0.5%〜1%）", "低還元率（0.5%未満）"], { prompt: "選択してください" } %>
   </div>
 
-  <!-- タグ入力 -->
+  <!-- 投稿検索機能(タグ検索) -->
   <div>
-    <%= form.label :tag_list, "タグ" %>
+    <%= form.label :tag_list, "関連キーワード（タグ）" %>
     <%= form.text_field :tag_list %>
   </div>
 

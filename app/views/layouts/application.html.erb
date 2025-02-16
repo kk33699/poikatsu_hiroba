@@ -23,7 +23,7 @@
               <% if user_signed_in? %>
                 <li class="nav-item"><%= link_to "Top", root_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
-                <li class="nav-item"><%= link_to "新規投稿", new_post_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to "おすすめなポイ活サイトを投稿(新規投稿)", new_post_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to "ポイ活サイト一覧", posts_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to "マイページ", mypage_users_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to "ユーザーを探す", search_users_path, class: "nav-link" %></li>
@@ -41,6 +41,14 @@
         </div>
       </nav>
     </header>
+
+
+    <div>
+    <% flash.each do |key, message| %>
+      <p><%= message %></p>
+    <% end %>
+    </div>
+  
 
 
 
