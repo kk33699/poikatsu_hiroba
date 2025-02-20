@@ -19,7 +19,16 @@
   <!-- タグ検索 -->
   <%= text_field_tag :tag, params[:tag], placeholder:"関連キーワード(タグ)を入力" %>
 
-  <%= submit_tag "検索" %>
+  <!-- ソート機能 -->
+  <!-- いいね数の優先順位 -->
+  <%= select_tag :sort_by, options_for_select([
+      ['指定なし', ''],
+      ['いいね数（多い順）', 'likes'],
+      ['評価（高い順）', 'rating'],
+      ['いいね数（多い順）＆評価（高い順）', 'likes_rating']
+    ], params[:sort_by]), class: "sort-select" %>
+
+  <%= submit_tag "検索・並び替え" %>
 <% end %>
 
 <table class="table">

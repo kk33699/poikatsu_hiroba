@@ -4,22 +4,36 @@ class PostsController < ApplicationController
   before_action :ensure_guest_user, only: %i[edit update destroy]
 
   def index
-    @posts = Post.all
-  
+    @posts = Post.includes(:favorites, :comments)
+
     # キーワード検索
     if params[:query].present?
       keyword = "%#{params[:query]}%"
       @posts = @posts.where("title LIKE ? OR body LIKE ?", keyword, keyword)
     end
-  
+
     # ポイント還元率検索
     if params[:reward_rate].present?
       @posts = @posts.where(reward_rate: params[:reward_rate])
     end
-  
+
     # タグ検索
     if params[:tag].present?
       @posts = @posts.tagged_with(params[:tag])
+    end
+
+    # ソート機能
+    case params[:sort_by]
+    when 'likes'
+      @posts = @posts.left_joins(:favorites)
+                     .group(:id)
+                     .order(Arel.sql('COUNT(favorites.id) DESC')) # いいねが多い順
+    when 'rating'
+      @posts = @posts.order(rate: :desc) # 評価（5段階）が高い順
+    when 'likes_rating'
+      @posts = @posts.left_joins(:favorites)
+                     .group(:id)
+                     .order(Arel.sql('COUNT(favorites.id) DESC, COALESCE(rate, 0) DESC')) # いいね⇒評価（5段階）順で並び替え
     end
   end
 
