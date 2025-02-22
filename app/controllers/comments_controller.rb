@@ -7,10 +7,10 @@ class CommentsController < ApplicationController
     @comment.user = current_user
   
     if @comment.save
-      flash[:notice] = 'コメントを追加しました。'  # 1つ目のメッセージ
+      flash[:notice] = 'コメントを追加しました。'
       redirect_to post_path(@post)
     else
-      flash[:alert] = 'コメントの追加に失敗しました。'  # 2つ目のメッセージ
+      flash[:alert] = 'コメントの追加に失敗しました。'
       redirect_to post_path(@post)
     end
   end

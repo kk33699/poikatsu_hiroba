@@ -2,6 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user! # ログインを必須
   before_action :set_post, only: %i[show edit update destroy]
   before_action :ensure_guest_user, only: %i[edit update destroy]
+  before_action :ensure_correct_user, only: %i[edit update]  # 所有者チェックの追加
+
+  def edit
+  end
 
   def index
     @posts = Post.includes(:favorites, :comments)
@@ -98,6 +102,13 @@ class PostsController < ApplicationController
   def ensure_guest_user
     if current_user.email == 'guest@example.com'
       redirect_to root_path, alert: 'ゲストユーザーはこの操作を行えません。'
+    end
+  end
+
+  # ログインユーザー以外のIDで投稿編集URLにアクセス制限
+  def ensure_correct_user
+    unless @post.user == current_user
+      redirect_to posts_path, alert: '他のユーザーの投稿は編集できません。'
     end
   end
 end
