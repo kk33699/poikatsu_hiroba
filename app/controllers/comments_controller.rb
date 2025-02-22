@@ -5,10 +5,13 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
+  
     if @comment.save
-      redirect_to post_path(@post), notice: 'コメントを追加しました。'
+      flash[:notice] = 'コメントを追加しました。'  # 1つ目のメッセージ
+      redirect_to post_path(@post)
     else
-      redirect_to post_path(@post), alert: 'コメントの追加に失敗しました。'
+      flash[:alert] = 'コメントの追加に失敗しました。'  # 2つ目のメッセージ
+      redirect_to post_path(@post)
     end
   end
 

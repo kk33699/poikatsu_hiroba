@@ -1,6 +1,12 @@
 <h1 class="mb-4 ms-3">ポイ活サービス詳細</h1>
 
-<p id="notice" class="ms-3"><%= notice %></p>
+<% if flash[:notice].present? %>
+  <p id="notice" class="ms-3"><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:alert].present? %>
+  <p id="alert" class="ms-3"><%= flash[:alert] %></p>
+<% end %>
 
 <div class="card p-3 ms-3">
   <p>
