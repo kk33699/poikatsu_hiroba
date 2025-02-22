@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user! # ログインを必須
   before_action :set_post, only: %i[show edit update destroy]
   before_action :ensure_guest_user, only: %i[edit update destroy]
-  before_action :ensure_correct_user, only: %i[edit update]  # 所有者チェックの追加
+  before_action :ensure_correct_user, only: %i[edit update]  # ログインユーザー以外のIDで投稿編集URLにアクセス制限
 
   def edit
   end
