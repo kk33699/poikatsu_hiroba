@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_authentication
+  before_action :configure_authentication, except: [:guest_login]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private

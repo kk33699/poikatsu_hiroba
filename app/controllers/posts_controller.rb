@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user! # ログインを必須
+  before_action :authenticate_user! # すべてのユーザーがログイン必須
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :ensure_guest_user, only: %i[edit update destroy]
+  before_action :ensure_guest_user, only: %i[new create edit update destroy]
   before_action :ensure_correct_user, only: %i[edit update]  # ログインユーザー以外のIDで投稿編集URLにアクセス制限
 
   def edit
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id]) 
+    @post = Post.includes(:user, :comments).find(params[:id]) 
     @comment = Comment.new 
     @comments = @post.comments.includes(:user)
   end

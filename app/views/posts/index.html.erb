@@ -96,7 +96,7 @@
 
 <br>
 
-<% if current_user.email != 'guest@example.com' %>
+<% if user_signed_in? && current_user.email != 'guest@example.com' %>
   <div>
     <%= link_to 'おすすめなポイ活サイトを投稿(新規投稿)', new_post_path %>
   </div>
