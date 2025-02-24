@@ -1,23 +1,29 @@
-<h1>ユーザー検索</h1>
+<div class="container d-flex justify-content-center">
+  <div class="col-md-6">
+    <h1 class="text-center mb-4">ユーザー検索</h1>
 
-<!-- ユーザー検索機能 -->
-<%= form_with url: search_users_path, method: :get, local: true do %>
-  <%= text_field_tag :query, params[:query], placeholder: "ユーザー名を入力" %>
-  <%= submit_tag "検索" %>
-<% end %>
+    <!-- ユーザー検索機能 -->
+    <%= form_with url: search_users_path, method: :get, local: true, class: "text-center" do %>
+      <%= text_field_tag :query, params[:query], placeholder: "ユーザー名を入力", class: "form-control w-50 mx-auto mb-2" %>
+      <%= submit_tag "検索", class: "btn btn-primary" %>
+    <% end %>
 
-<% if params[:query].present? %>
-  <h2>ユーザー検索結果</h2>
-<% else %>
-  <h2>ユーザー一覧</h2>
-<% end %>
+    <% if params[:query].present? %>
+      <h2 class="text-center mt-4">ユーザー検索結果</h2>
+    <% else %>
+      <h2 class="text-center mt-4">ユーザー一覧</h2>
+    <% end %>
 
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <%= user.name %>
-    </li>
-  <% end %>
+    <ul class="list-unstyled text-center">
+      <% @users.each do |user| %>
+        <li>
+        ・<%= user.name %>
+        </li>
+      <% end %>
+    </ul>
 
-  <%= link_to "マイページへ", mypage_users_path %>
-</ul>
+    <div class="text-center mt-4">
+      <%= link_to "マイページへ", mypage_users_path, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+</div>
