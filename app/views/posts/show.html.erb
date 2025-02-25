@@ -41,11 +41,11 @@
 
   <% if @post.favorited_by?(current_user) %>
     <%= link_to post_favorite_path(@post), method: :delete do %>
-      ♥<%= @post.favorites.count %> お気に入り
+      ♥<%= @post.favorites.count %> いいね
     <% end %>
   <% else %>
     <%= link_to post_favorite_path(@post), method: :post do %>
-      ♡<%= @post.favorites.count %> お気に入り
+      ♡<%= @post.favorites.count %> いいね
     <% end %>
   <% end %>
 </div>

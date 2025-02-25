@@ -4,8 +4,10 @@
 
     <!-- ユーザー検索機能 -->
     <%= form_with url: search_users_path, method: :get, local: true, class: "text-center" do %>
-      <%= text_field_tag :query, params[:query], placeholder: "ユーザー名を入力", class: "form-control w-50 mx-auto mb-2" %>
-      <%= submit_tag "検索", class: "btn btn-primary" %>
+      <div class="input-group w-50 mx-auto">
+        <%= text_field_tag :query, params[:query], placeholder: "ユーザー名を入力", class: "form-control" %>
+        <%= submit_tag "検索", class: "btn btn-primary" %>
+      </div>
     <% end %>
 
     <% if params[:query].present? %>
@@ -17,7 +19,7 @@
     <ul class="list-unstyled text-center">
       <% @users.each do |user| %>
         <li>
-        ・<%= user.name %>
+          ・<%= user.name %>
         </li>
       <% end %>
     </ul>

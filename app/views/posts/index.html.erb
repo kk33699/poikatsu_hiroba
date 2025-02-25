@@ -25,7 +25,7 @@
       ['いいね数（多い順）＆評価（高い順）', 'likes_rating']
     ], params[:sort_by]), class: "sort-select" %>
 
-  <%= submit_tag "検索・並び替え" %>
+  <%= submit_tag "検索・並び替え", class: "btn btn-primary" %>
 <% end %>
 
 <table class="table">
@@ -36,7 +36,7 @@
       <th>サービスの特徴や使いやすさ</th>
       <th>ポイント還元率</th>
       <th>関連キーワード（タグ）</th>
-      <th>お気に入り数</th> 
+      <th>いいね数</th> 
       <th>評価</th> 
       <th></th>
     </tr>
@@ -60,11 +60,11 @@
         <td>
           <% if post.favorited_by?(current_user) %>
             <%= link_to post_favorite_path(post), method: :delete, data: { turbo_method: :delete } do %>
-              ♥<%= post.favorites.count %> お気に入り
+              ♥<%= post.favorites.count %> いいね
             <% end %>
           <% else %>
             <%= link_to post_favorite_path(post), method: :post, data: { turbo_method: :post } do %>
-              ♡<%= post.favorites.count %> お気に入り
+              ♡<%= post.favorites.count %> いいね
             <% end %>
           <% end %>
         </td>

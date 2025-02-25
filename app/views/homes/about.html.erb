@@ -9,4 +9,9 @@
   <p>
     「ポイ活広場」で、自分にぴったりのポイントサービスを見つけて、日々の生活をさらにお得にしましょう！
   </p>
+  <p>
+    <% if user_signed_in? %>
+      <%= link_to "マイページへ", mypage_users_path, class: "btn btn-outline-secondary ms-2" %>
+    <% end %>
+  </p>
 </div>

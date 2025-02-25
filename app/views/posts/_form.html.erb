@@ -10,46 +10,51 @@
     </div>
   <% end %>
 
-  <!-- サービス名 -->
-  <div>
-  <%= form.label :title, "サービス名" %>
-  <br>
-  <%= form.text_field :title, class: "form-control w-50" %>
-</div>
+  <div class="ms-4">
+  
+    <!-- サービス名 -->
+    <div class="mb-4">
+      <%= form.label :title, "サービス名" %>
+      <br>
+      <%= form.text_field :title, class: "form-control w-50" %>
+    </div>
 
-  <!-- サービスの特徴や使いやすさ -->
-  <div>
-  <%= form.label :body, "サービスの特徴や使いやすさ" %>
-  <br>
-  <%= form.text_area :body, class: "form-control w-50" %>
-</div>
+    <!-- サービスの特徴や使いやすさ -->
+    <div class="mb-4">
+      <%= form.label :body, "サービスの特徴や使いやすさ" %>
+      <br>
+      <%= form.text_area :body, class: "form-control w-50" %>
+    </div>
 
-  <!-- ポイント還元率 -->
-  <div>
-  <%= form.label :reward_rate, "ポイント還元率" %>
-  <br>
-  <%= form.select :reward_rate, ["高還元率（1%以上）", "中還元率（0.5%〜1%）", "低還元率（0.5%未満）"], { prompt: "選択してください" }, class: "form-select w-50" %>
-</div>
+    <!-- ポイント還元率 -->
+    <div class="mb-4">
+      <%= form.label :reward_rate, "ポイント還元率" %>
+      <br>
+      <%= form.select :reward_rate, ["高還元率（1%以上）", "中還元率（0.5%〜1%）", "低還元率（0.5%未満）"], { prompt: "選択してください" }, class: "form-select w-50" %>
+    </div>
 
-  <!-- 投稿検索機能(タグ検索) -->
-  <div>
-  <%= form.label :tag_list, "関連キーワード（タグ）" %>
-  <br>
-  <%= form.text_field :tag_list, class: "form-control w-50" %>
-</div>
+    <!-- 投稿検索機能(タグ検索) -->
+    <div class="mb-4">
+      <%= form.label :tag_list, "関連キーワード（タグ）" %>
+      <br>
+      <%= form.text_field :tag_list, class: "form-control w-50" %>
+    </div>
 
-  <!-- レビュー -->
-  <div>
-    <%= form.label :rate, "評価（5段階）" %>
-    <div id="post_raty"></div>
-    <%= form.hidden_field :rate, id: "rate_value" %>
+    <!-- レビュー -->
+    <div class="mb-4">
+      <%= form.label :rate, "5段階評価" %>
+      <div id="post_raty"></div>
+      <%= form.hidden_field :rate, id: "rate_value" %>
+    </div>
+
+    <!-- 投稿するボタンとBackリンク -->
+    <div class="mb-4">
+      <%= form.submit "投稿する", class: "btn btn-primary" %>
+      <%= link_to '一覧に戻る', posts_path, class: "btn btn-secondary ms-2" %>
+    </div>
+
   </div>
 
-  <!-- 投稿するボタンとBackリンク -->
-  <div class="mt-3">
-    <%= form.submit "投稿する", class: "btn btn-primary" %>
-    <%= link_to '一覧に戻る', posts_path, class: "btn btn-secondary ms-2" %>
-  </div>
 <% end %>
 
 <!-- レビュー -->
