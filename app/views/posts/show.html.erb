@@ -92,16 +92,18 @@ if (document.getElementById("post_raty") != null) {
 </div>
 
 <!-- コメント追加フォーム -->
-<div class="card p-3 ms-3">
-  <h2 class="mb-4 ms-3">コメントを追加する</h2>
-  <div class="p-3">
-    <%= form_with model: [@post, @comment], local: true do |f| %>
-      <div class="mb-3">
-        <%= f.text_area :content, placeholder: 'コメントを入力してください', class: "form-control" %>
-      </div>
-      <div>
-        <%= f.submit '送信', class: "btn btn-primary" %>
-      </div>
-    <% end %>
+<% unless current_user.email == 'guest@example.com' %>
+  <div class="card p-3 ms-3">
+    <h2 class="mb-4 ms-3">コメントを追加する</h2>
+    <div class="p-3">
+      <%= form_with model: [@post, @comment], local: true do |f| %>
+        <div class="mb-3">
+          <%= f.text_area :content, placeholder: 'コメントを入力してください', class: "form-control" %>
+        </div>
+        <div>
+          <%= f.submit '送信', class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
