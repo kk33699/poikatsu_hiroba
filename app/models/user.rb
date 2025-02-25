@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  validates :name, presence: true # 新規登録名前追加
+  validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 20 }
 end
