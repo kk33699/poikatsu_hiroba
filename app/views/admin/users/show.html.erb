@@ -15,9 +15,8 @@
 
   <br>
 
-  <div>
-    <%= link_to 'ユーザー管理へ戻る', admin_users_path %>  | 
-    <%= link_to "削除(退会)", admin_user_path(@user), method: :delete, data: { confirm: "本当に削除(退会)させますか？" }%>
+  <div class="mt-3">
+    <%= link_to '管理者用ユーザー一覧へ戻る', admin_users_path, class: "btn btn-secondary" %>
+    <%= link_to "削除(退会)", admin_user_path(@user), method: :delete, data: { confirm: "本当に削除(退会)させますか？" }, class: "btn btn-danger ms-2" %>
   </div>
 </div>
-

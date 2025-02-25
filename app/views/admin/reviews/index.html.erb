@@ -1,12 +1,12 @@
-<h1>レビュー管理者機能</h1>
+<h1>管理者用レビュー一覧</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>投稿者名</th>
       <th>サービス名</th>
       <th>サービスの特徴や使いやすさ</th>
-      <th>評価（5段階）</th>
+      <th>評価</th>
       <th></th>
     </tr>
   </thead>
@@ -34,7 +34,7 @@
           </script>
         </td>
         <td>
-          <%= link_to "削除", admin_review_path(review), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+          <%= link_to "削除", admin_review_path(review), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
         </td>
       </tr>
     <% end %>
