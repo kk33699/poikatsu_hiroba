@@ -17,7 +17,6 @@
   <%= text_field_tag :tag, params[:tag], placeholder:"関連キーワード(タグ)を入力" %>
 
   <!-- ソート機能 -->
-  <!-- いいね数の優先順位 -->
   <%= select_tag :sort_by, options_for_select([
       ['指定なし', ''],
       ['いいね数（多い順）', 'likes'],
@@ -69,21 +68,24 @@
           <% end %>
         </td>
 
+        <!-- レビュー -->
         <td>
           <div id="post_raty_<%= post.id %>"></div>
-        <script>
-          (function() {  
-            const elem = document.querySelector("#post_raty_<%= post.id %>");
-            const opt = {
-              starHalf: "/assets/star-half.png",
-              starOff: "/assets/star-off.png",
-              starOn: "/assets/star-on.png",
-              readOnly: true,
-              score: <%= post.rate || 0 %>
-            };
-            raty(elem, opt);
-          })();
-        </script>
+          <script>
+            if (document.getElementById("post_raty_<%= post.id %>") != null) {
+              document.querySelector("#post_raty_<%= post.id %>").textContent = '';
+              let elem = document.querySelector("#post_raty_<%= post.id %>");
+              let opt = {
+                starHalf: "/assets/star-half.png",
+                starOff: "/assets/star-off.png",
+                starOn: "/assets/star-on.png",
+                readOnly: true,
+                score: <%= post.rate || 0 %> 
+              };
+              raty(elem, opt);
+            }
+          </script>
+        </td>
 
         <td>
           <%= link_to '詳細を見る', post, class: "btn btn-primary" %>
