@@ -1,47 +1,37 @@
 <h1 class="mb-4 ms-3">プロフィール編集</h1>
 
 <div class="ms-3">
-  <!-- バリデーションエラーメッセージを表示 -->
-  <% if @user.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(@user.errors.count, "エラー") %>が発生しました:</h2>
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= form_with(model: @user, url: user_path(@user), method: :patch) do |form| %>
-    <div class="mb-3 row">
-      <%= form.label :name, "名前", class: "col-sm-2 col-form-label text-end" %>
-      <div class="col-sm-10">
-        <%= form.text_field :name, class: "form-control" %>
+  <div class="w-50">
+    
+    <% if @user.errors.any? %>
+      <div id="error_explanation" class="mb-3 p-2 ">
+        <h2><%= @user.errors.count %> 件のエラーが発生しました:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       </div>
-    </div>
+    <% end %>
 
-    <div class="mb-3 row">
-      <%= form.label :email, "メールアドレス", class: "col-sm-2 col-form-label text-end" %>
-      <div class="col-sm-10">
-        <%= form.email_field :email, class: "form-control" %>
+    <%= form_with(model: @user, url: user_path(@user), method: :patch) do |form| %>
+      <div class="mb-3">
+        <%= form.label :name, "名前", class: "form-label" %>
+        <%= form.text_field :name, class: "form-control w-50" %>
       </div>
-    </div>
 
-    <div class="mb-3 row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-10">
-        <!-- 更新ボタン -->
+      <div class="mb-3">
+        <%= form.label :email, "メールアドレス", class: "form-label" %>
+        <%= form.email_field :email, class: "form-control w-50" %>
+      </div>
+
+      <div class="mb-3">
         <%= form.submit "更新", class: "btn btn-primary" %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <div class="mb-3 row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-10">
-      <!-- 退会ボタン -->
-      <%= button_to '退会する', destroy_account_user_path(current_user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: "btn btn-danger" %>
+    <div class="mb-3">
+    <%= button_to '退会する', destroy_account_user_path(current_user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: "btn btn-danger" %>
     </div>
   </div>
 </div>
