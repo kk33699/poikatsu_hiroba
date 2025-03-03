@@ -76,9 +76,9 @@
               document.querySelector("#post_raty_<%= post.id %>").textContent = '';
               let elem = document.querySelector("#post_raty_<%= post.id %>");
               let opt = {
-                starHalf: "/assets/star-half.png",
-                starOff: "/assets/star-off.png",
-                starOn: "/assets/star-on.png",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starOn: "<%= asset_path('star-on.png') %>",
                 readOnly: true,
                 score: <%= post.rate || 0 %> 
               };
