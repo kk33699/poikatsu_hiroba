@@ -23,14 +23,27 @@
 - 自分の使っているポイントサービスのメリットや注意点を共有したいとき。
 
 ## 設計書
-後ほど作成予定
+- 実装機能リスト
+https://docs.google.com/spreadsheets/d/1XZu_mPbIx8IXwd88dTNEFJjY4UiDK22xaBh7di4_bDY/edit?gid=1091086188#gid=1091086188
+
+- テーブル定義書
+https://docs.google.com/spreadsheets/d/1_o2km3MnPBypGjGRqGPrxhLHaPVS6ychEW67MuF1ND4/edit?gid=1044500859#gid=1044500859
+
+- ER図
+https://drive.google.com/file/d/1tynrclnyV65lVDXQZgqS5JH71iGDzNzF/view?usp=drive_link
+
+- UIflows
+https://drive.google.com/file/d/16DjuuG3pasxu2I-b7ueTJNv_QB9Wyt59/view?usp=drive_link
+
+- アプリケーション詳細設計書
+https://docs.google.com/spreadsheets/d/1YyGreehIDP4NV4lZEqbS93TjpHyWB0-xdLpFWeqgVyE/edit?gid=549108681#gid=549108681
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Amazon Linux 2
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
-- IDE：Cloud9
+- IDE：Visual Studio Code
 ​
 ## 使用素材
 著作権を考慮し、架空のデータを扱う予定です。
