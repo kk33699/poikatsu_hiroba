@@ -23,8 +23,8 @@
             (function() {  
               const elem = document.querySelector("#post_raty_<%= review.id %>");
               const opt = {
-                starOff: "/assets/star-off.png",
-                starOn: "/assets/star-on.png",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starOn: "<%= asset_path('star-on.png') %>",
                 readOnly: true,
                 score: <%= review.rate || 0 %>
               };
