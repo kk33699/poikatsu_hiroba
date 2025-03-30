@@ -1,0 +1,17 @@
+<h2>管理者ログイン</h2>
+
+<%= form_with scope: :admin, url: admin_session_path, local: true do |f| %>
+  <div>
+    <%= f.label :email, 'メールアドレス' %><br>
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div>
+    <%= f.label :password, 'パスワード' %><br>
+    <%= f.password_field :password %>
+  </div>
+
+  <div>
+    <%= f.submit 'ログイン' %>
+  </div>
+<% end %>
