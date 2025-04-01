@@ -1,9 +1,2 @@
 <h1 class="mb-4 ms-4">サービス内容を編集</h1>
-
-<div>
-  <%= render 'form', post: @post %>
-
-  <div class="mb-4 ms-4">
-    <%= link_to '削除する', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
-  </div>
-</div>
+<%= render 'form', post: @post %>
