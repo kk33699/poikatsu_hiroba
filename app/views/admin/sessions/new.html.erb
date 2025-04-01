@@ -1,17 +1,21 @@
-<h2>管理者ログイン</h2>
+<h2 class="text-center mb-4">管理者ログイン</h2>
 
-<%= form_with scope: :admin, url: admin_session_path, local: true do |f| %>
-  <div>
-    <%= f.label :email, 'メールアドレス' %><br>
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<div class="container d-flex justify-content-center">
+  <div class="col-md-4 col-sm-6">
+    <%= form_with scope: :admin, url: admin_session_path, local: true do |f| %>
+      <div class="mb-3">
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= f.label :password, 'パスワード' %><br>
-    <%= f.password_field :password %>
-  </div>
+      <div class="mb-4">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= f.submit 'ログイン' %>
+      <div class="text-center">
+        <%= f.submit 'ログイン', class: "btn btn-success w-100" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
