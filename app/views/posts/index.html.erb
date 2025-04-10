@@ -32,7 +32,8 @@
   <thead>
     <tr>
       <th>投稿者</th>
-      <th>サービス名</th>
+      <th>投稿日</th>
+      <th>サービス名</th>      
       <th>サービスの特徴や使いやすさ</th>
       <th>ポイント還元率</th>
       <th>関連キーワード（タグ）</th>
@@ -46,17 +47,19 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.user.name %></td>
-        <td><%= post.title %></td>
+        <td><%= post.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+        <td><%= post.title %></td>        
         <td><%= post.body %></td>
         <td><%= post.reward_rate.presence || "未設定" %></td>
 
-        <!-- 投稿検索機能(タグ検索) -->
+        <!-- タグ -->
         <td>
           <% post.tag_list.each do |tag| %>
             <%= link_to tag, posts_path(tag: tag) %>
           <% end %>
         </td>
 
+        <!-- いいね -->
         <td>
           <% if post.favorited_by?(current_user) %>
             <%= link_to post_favorite_path(post), method: :delete, data: { turbo_method: :delete } do %>
@@ -69,7 +72,7 @@
           <% end %>
         </td>
 
-        <!-- レビュー -->
+        <!-- 評価 -->
         <td>
           <div id="post_raty_<%= post.id %>"></div>
           <script>
@@ -87,6 +90,7 @@
           </script>
         </td>
 
+        <!-- 詳細 -->
         <td>
           <%= link_to '詳細を見る', post, class: "btn btn-primary" %>
         </td>

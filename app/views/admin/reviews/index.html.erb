@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>投稿者名</th>
+      <th>投稿日</th>
       <th>サービス名</th>
       <th>サービスの特徴や使いやすさ</th>
       <th>評価</th>
@@ -15,6 +16,7 @@
     <% @reviews.each do |review| %>
       <tr>
         <td><%= review.user.name %></td>
+        <td><%= review.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
         <td><%= review.title %></td>
         <td><%= review.body %></td>
         <td>
