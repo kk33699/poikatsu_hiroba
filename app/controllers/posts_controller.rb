@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.includes(:favorites, :comments)
+    @posts = Post.includes(:favorites, :comments).order(created_at: :desc) # いいね・コメント・新着順
 
     # キーワード検索
     if params[:query].present?
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.includes(:user, :comments).find(params[:id]) 
     @comment = Comment.new 
-    @comments = @post.comments.includes(:user)
+    @comments = @post.comments.includes(:user).order(created_at: :desc)
   end
 
   def new

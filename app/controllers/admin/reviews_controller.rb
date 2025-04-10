@@ -4,7 +4,7 @@ class Admin::ReviewsController < ApplicationController
   before_action :set_review, only: [:destroy]
 
   def index
-    @reviews = Post.all # レビューをすべて取得
+    @reviews = Post.includes(:user).order(created_at: :desc) # 新着順
   end
 
   def destroy
