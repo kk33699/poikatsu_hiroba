@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   acts_as_taggable_on :tags
 
-  REWARD_RATES = ["高還元率（1%以上）", "中還元率（0.5%〜1%）", "低還元率（0.5%未満）", "その他"]
+  REWARD_RATES = ["高還元率（1%以上）", "中還元率（0.5%〜1%未満）", "低還元率（0.5%未満）", "その他"]
 
   validates :title, presence: true, length: { maximum: 100 }
   validates :body, presence: true
