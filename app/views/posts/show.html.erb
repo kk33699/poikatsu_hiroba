@@ -83,6 +83,7 @@ if (document.getElementById("post_raty") != null) {
 <!-- コメント一覧 -->
 <div class="card p-3 ms-3">
   <h2 class="mb-4 ms-3">コメント一覧</h2>
+  <p class="ms-3 mb-0  fs-5"><strong><%= @post.comments.count %>件のコメントがあります。</strong></p>  <!-- コメント数 -->
   <div class="p-3">
     <% @comments.each do |comment| %>
       <div class="border-bottom py-2">
