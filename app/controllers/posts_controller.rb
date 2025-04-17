@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.includes(:favorites, :comments).order(created_at: :desc) # いいね・コメント・新着順
+    @posts = Post.all
 
     # キーワード検索
     if params[:query].present?
@@ -30,14 +30,16 @@ class PostsController < ApplicationController
     case params[:sort_by]
     when 'likes'
       @posts = @posts.left_joins(:favorites)
-                     .group(:id)
-                     .order(Arel.sql('COUNT(favorites.id) DESC')) # いいねが多い順
+                     .group("posts.id")
+                     .order(Arel.sql('COUNT(favorites.id) DESC'))
     when 'rating'
-      @posts = @posts.order(rate: :desc) # 評価（5段階）が高い順
+      @posts = @posts.order(rate: :desc)
     when 'likes_rating'
       @posts = @posts.left_joins(:favorites)
-                     .group(:id)
-                     .order(Arel.sql('COUNT(favorites.id) DESC, COALESCE(rate, 0) DESC')) # いいね⇒評価（5段階）順で並び替え
+                     .group("posts.id")
+                     .order(Arel.sql('COUNT(favorites.id) DESC, COALESCE(rate, 0) DESC'))
+    else
+      @posts = @posts.includes(:favorites, :comments).order(created_at: :desc) # 新着順表示＆いいね・コメント事前読み込み
     end
   end
 
