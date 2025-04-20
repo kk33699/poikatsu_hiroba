@@ -28,16 +28,20 @@ class PostsController < ApplicationController
 
     # ソート機能
     case params[:sort_by]
-    when 'likes'
+    when 'likes' # いいね
       @posts = @posts.left_joins(:favorites)
                      .group("posts.id")
                      .order(Arel.sql('COUNT(favorites.id) DESC'))
-    when 'rating'
+    when 'rating' #評価ソート機能
       @posts = @posts.order(rate: :desc)
-    when 'likes_rating'
-      @posts = @posts.left_joins(:favorites)
+    when 'comments' # コメント数ソート機能
+      @posts = @posts.left_joins(:comments)
                      .group("posts.id")
-                     .order(Arel.sql('COUNT(favorites.id) DESC, COALESCE(rate, 0) DESC'))
+                     .order(Arel.sql('COUNT(comments.id) DESC'))
+    # when 'likes_comments_rating' いいね+コメント数+評価ソート機能（順番もその通り） 後日使用する可能性があるためコメントアウト
+      # @posts = @posts.left_joins(:favorites, :comments) 後日使用する可能性があるためコメントアウト
+                     # .group("posts.id") 後日使用する可能性があるためコメントアウト
+                     # .order(Arel.sql('COUNT(favorites.id) DESC, COUNT(comments.id) DESC, COALESCE(rate, 0) DESC')) 後日使用する可能性があるためコメントアウト
     else
       @posts = @posts.includes(:favorites, :comments).order(created_at: :desc) # 新着順表示＆いいね・コメント事前読み込み
     end

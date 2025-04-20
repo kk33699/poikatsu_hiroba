@@ -21,8 +21,9 @@
   <%= select_tag :sort_by, options_for_select([
       ['指定なし', ''],
       ['いいね数（多い順）', 'likes'],
+      ['コメント数（多い順）', 'comments'], 
       ['評価（高い順）', 'rating'],
-      ['いいね数（多い順）＆評価（高い順）', 'likes_rating']
+      # ['いいね数＋コメント数＋評価（多い順）', 'likes_comments_rating'] 後日使用可能性があるため削除ではなくコメントアウト
     ], params[:sort_by]), class: "sort-select" %>
 
   <%= submit_tag "検索・並び替え", class: "btn btn-primary" %>
