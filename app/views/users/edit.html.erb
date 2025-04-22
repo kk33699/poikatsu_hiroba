@@ -26,6 +26,11 @@
       </div>
 
       <div class="mb-3">
+        <%= form.label :avatar, "プロフィール画像", class: "form-label" %>
+        <%= form.file_field :avatar, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
         <%= form.submit "更新", class: "btn btn-primary" %>
       </div>
     <% end %>

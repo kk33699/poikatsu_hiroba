@@ -66,7 +66,8 @@ class UsersController < ApplicationController
     end
   end
 
+  #プロフィール編集
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :avatar)
   end
 end

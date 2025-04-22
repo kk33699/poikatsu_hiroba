@@ -1,5 +1,13 @@
 <h1 class="text-center mb-4">あなたのマイページ</h1>
 
+<div class="text-center mb-3"> 
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar, class: "rounded-circle", size: "150x150" %>
+  <% else %>
+    <%= image_tag "no_image_hoikatsuhiroba.png", class: "rounded-circle", size: "150x150" %>
+  <% end %>
+</div>
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
