@@ -58,8 +58,8 @@
           </div>
         </td>      
         <td><%= post.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
-        <td><%= post.title %></td>        
-        <td><%= post.body %></td>
+        <td style="width: 180px; word-break: break-word;"><%= post.title %></td>        
+        <td style="width: 400px; word-break: break-word;"><%= post.body %></td>
         <td><%= post.reward_rate.presence || "未設定" %></td>
 
         <!-- タグ -->
