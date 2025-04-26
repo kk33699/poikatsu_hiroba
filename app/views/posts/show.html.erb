@@ -1,9 +1,17 @@
 <h1 class="mb-4 ms-3">ポイ活サービス詳細</h1>
 
 <div class="card p-3 ms-3">
-  <p>
-    <strong>投稿者名:</strong>
-    <%= link_to @post.user.name, user_path(@post.user) %>
+  <p class="d-flex align-items-center gap-3">
+    <span>
+      <strong>投稿者名:</strong>
+      <%= link_to @post.user.name, user_path(@post.user), class: "ms-2" %>
+    </span>
+
+    <% if @post.user.avatar.attached? %>
+      <%= image_tag @post.user.avatar, class: "rounded-circle", size: "40x40" %>
+    <% else %>
+      <%= image_tag "no_image_hoikatsuhiroba.png", class: "rounded-circle", size: "40x40" %>
+    <% end %>
   </p>
 
   <p>

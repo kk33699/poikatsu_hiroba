@@ -47,15 +47,16 @@
 
   <tbody>
     <% @posts.each do |post| %>
-        <tr>
-          <td class="d-flex align-items-center gap-2">
+        <td>
+          <div class="d-flex align-items-center gap-2">
             <% if post.user.avatar.attached? %>
-              <%= image_tag post.user.avatar, class: "rounded-circle", size: "40x40" %> <!-- プロフィール画像選択後 -->
+              <%= image_tag post.user.avatar, class: "rounded-circle", size: "40x40" %>   <!-- プロフィール画像選択後 -->
             <% else %>
-              <%= image_tag "no_image_hoikatsuhiroba.png", class: "rounded-circle", size: "40x40" %> <!-- デフォルト画像 -->
+              <%= image_tag "no_image_hoikatsuhiroba.png", class: "rounded-circle", size: "40x40" %>  <!-- デフォルト画像 -->
             <% end %>
-            <%= post.user.name %> <!-- ユーザー名 -->
-        </td>       
+              <%= post.user.name %>  <!-- ユーザー名 -->
+          </div>
+        </td>      
         <td><%= post.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
         <td><%= post.title %></td>        
         <td><%= post.body %></td>
