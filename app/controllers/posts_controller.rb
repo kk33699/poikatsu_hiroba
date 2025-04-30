@@ -51,6 +51,8 @@ class PostsController < ApplicationController
     @post = Post.includes(:user, :comments).find(params[:id]) 
     @comment = Comment.new 
     @comments = @post.comments.includes(:user).order(created_at: :desc)
+    @previous_post = Post.where("id < ?", @post.id).order(id: :desc).first # 「← 前の投稿」
+    @next_post = Post.where("id > ?", @post.id).order(id: :asc).first # 「次の投稿 →」
   end
 
   def new

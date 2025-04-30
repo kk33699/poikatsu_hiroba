@@ -1,5 +1,20 @@
 <h1 class="mb-4 ms-3">ポイ活サービス詳細</h1>
 
+<div class="d-flex justify-content-between mb-3 mx-3">
+  <% if @previous_post %>
+    <%= link_to '← 前の投稿', post_path(@previous_post) %>
+  <% else %>
+    <span></span>
+  <% end %>
+
+  <% if @next_post %>
+    <%= link_to '次の投稿 →', post_path(@next_post) %>
+  <% else %>
+    <span></span>
+  <% end %>
+</div>
+
+
 <div class="card p-3 ms-3">
   <p class="d-flex align-items-center gap-3">
     <span>
