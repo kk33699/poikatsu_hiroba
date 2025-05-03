@@ -1,4 +1,4 @@
-<h1>管理者用レビュー一覧</h1>
+<h1 class="mb-4">管理者用レビュー一覧</h1>
 
 <table class="table">
   <thead>
@@ -17,12 +17,12 @@
       <tr>
         <td><%= review.user.name %></td>
         <td><%= review.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
-        <td><%= review.title %></td>
-        <td><%= review.body %></td>
+        <td style="width: 180px; word-break: break-word;"><%= review.title %></td>
+        <td style="width: 400px; word-break: break-word;"><%= review.body %></td>
         <td>
           <div id="post_raty_<%= review.id %>"></div>
           <script>
-            (function() {  
+            if (document.getElementById("post_raty_<%= review.id %>") != null) {
               const elem = document.querySelector("#post_raty_<%= review.id %>");
               const opt = {
                 starOff: "<%= asset_path('star-off.png') %>",
@@ -31,14 +31,15 @@
                 score: <%= review.rate || 0 %>
               };
               raty(elem, opt);
-            })();
+            }
           </script>
         </td>
         <td>
-          <%= link_to "削除", admin_review_path(review), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+          <%= link_to "削除", admin_review_path(review), method: :delete,
+              data: { confirm: "本当に削除しますか？" },
+              class: "btn btn-danger btn-sm" %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
