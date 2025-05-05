@@ -66,3 +66,4 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 gem 'acts-as-taggable-on'
+gem 'devise-i18n'

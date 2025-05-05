@@ -12,6 +12,7 @@ module PoikatsuHiroba
     config.load_defaults 6.1
 
     config.time_zone = 'Tokyo' # タイムゾーンを日本時間に設定
+    config.i18n.default_locale = :ja # ログイン等メッセージを日本語に
 
     # Configuration for the application, engines, and railties goes here.
     #
