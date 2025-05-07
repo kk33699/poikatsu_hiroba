@@ -5,6 +5,12 @@ class Admin::ReviewsController < ApplicationController
 
   def index
     @reviews = Post.includes(:user).order(created_at: :desc) # 新着順
+
+    # 投稿検索
+    if params[:query].present?
+      keyword = "%#{params[:query]}%"
+      @reviews = @reviews.where("title LIKE ? OR body LIKE ?", keyword, keyword)
+    end
   end
 
   def destroy
