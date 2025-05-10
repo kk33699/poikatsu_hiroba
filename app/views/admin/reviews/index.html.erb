@@ -16,6 +16,7 @@
       <th>サービスの特徴や使いやすさ</th>
       <th>評価</th>
       <th></th>
+      <th>仮で詳細</th>
     </tr>
   </thead>
 
@@ -46,6 +47,12 @@
               data: { confirm: "本当に削除しますか？" },
               class: "btn btn-danger btn-sm" %>
         </td>
+
+        <!-- 仮で追加 -->
+        <td>
+          <%= link_to "詳細", admin_post_path(review) %>
+        </td>
+
       </tr>
     <% end %>
   </tbody>

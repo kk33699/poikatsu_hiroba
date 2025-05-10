@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get 'users', to: 'users#index'
     resources :users, only: [:index, :show, :destroy]
     resources :reviews, only: [:index, :destroy] # レビュー管理者
+    resources :posts, only: [:show] # 管理者用：投稿詳細ページ
   end
 
   # エンドユーザーの管理
