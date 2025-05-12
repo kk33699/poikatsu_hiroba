@@ -1,1 +1,39 @@
-<h1> でてくるか確認管理者ポイ活サービス詳細</h1>
+<h1> 作業途中管理者用ポイ活サービス詳細 </h1>
+
+<p>
+  <strong>投稿者名:</strong>
+  <%= @post.user.name %>
+
+<p>
+  <strong>投稿日:</strong>
+  <%= @post.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+</p>
+
+<p>
+  <strong>サービス名:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>サービスの特徴や使いやすさ:</strong>
+  <%= @post.body %>
+</p>
+
+<p>
+  <strong>ポイント還元率:</strong>
+  <%= @post.reward_rate.presence || "未設定" %> 
+</p>
+
+<p>
+  <strong>関連キーワード（タグ）:</strong>
+  <% if @post.tag_list.present? %>
+    <%= @post.tag_list.join("、") %>
+  <% else %>
+    <span></span>
+  <% end %>
+</p>
+
+<p>
+  <strong>いいね:</strong>
+  ♥<%= @post.favorites.count %>
+</p>
