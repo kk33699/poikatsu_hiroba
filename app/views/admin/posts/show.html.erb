@@ -3,6 +3,7 @@
 <p>
   <strong>投稿者名:</strong>
   <%= @post.user.name %>
+</p>
 
 <p>
   <strong>投稿日:</strong>
@@ -34,6 +35,30 @@
 </p>
 
 <p>
-  <strong>いいね:</strong>
-  ♥<%= @post.favorites.count %>
+  <strong>評価:</strong>
+  <div id="post_raty"></div>
+</p>
+
+<p>
+  <strong>いいね数:</strong>
+  <%= @post.favorites.count %>
+</p>
+
+<script>
+if (document.getElementById("post_raty") != null) {
+  document.querySelector("#post_raty").textContent = '';
+  let elem = document.querySelector("#post_raty");
+  let opt = {
+    starOff: "<%= asset_path('star-off.png') %>",
+    starOn: "<%= asset_path('star-on.png') %>",
+    readOnly: true,
+    score: <%= @post.rate || 0 %>
+  };
+  raty(elem, opt);
+}
+</script>
+
+<p>
+  <%= link_to '一覧に戻る', admin_reviews_path %>
+  <%= link_to '削除する', admin_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } %>
 </p>
