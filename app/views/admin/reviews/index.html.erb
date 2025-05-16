@@ -16,7 +16,6 @@
       <th>サービスの特徴や使いやすさ</th>
       <th>評価</th>
       <th></th>
-      <th>仮で詳細</th>
     </tr>
   </thead>
 
@@ -28,25 +27,21 @@
         <td style="width: 180px; word-break: break-word;"><%= review.title %></td>
         <td style="width: 400px; word-break: break-word;"><%= review.body %></td>
         <td>
-          <div id="post_raty_<%= review.id %>"></div>
-          <script>
-            if (document.getElementById("post_raty_<%= review.id %>") != null) {
-              const elem = document.querySelector("#post_raty_<%= review.id %>");
-              const opt = {
-                starOff: "<%= asset_path('star-off.png') %>",
-                starOn: "<%= asset_path('star-on.png') %>",
-                readOnly: true,
-                score: <%= review.rate || 0 %>
-              };
-              raty(elem, opt);
-            }
-          </script>
-        </td>
-        <td>
-          <%= link_to "削除", admin_review_path(review), method: :delete,
-              data: { confirm: "本当に削除しますか？" },
-              class: "btn btn-danger btn-sm" %>
-        </td>
+        <div id="post_raty_<%= review.id %>"></div>
+        <script>
+          if (document.getElementById("post_raty_<%= review.id %>") != null) {
+            document.querySelector("#post_raty_<%= review.id %>").textContent = '';
+            let elem = document.querySelector("#post_raty_<%= review.id %>");
+            let opt = {
+              starOff: "<%= asset_path('star-off.png') %>",
+              starOn: "<%= asset_path('star-on.png') %>",
+              readOnly: true,
+              score: <%= review.rate || 0 %>
+            };
+            raty(elem, opt);
+          }
+        </script>
+      </td>        
 
         <!-- 仮で追加 -->
         <td>

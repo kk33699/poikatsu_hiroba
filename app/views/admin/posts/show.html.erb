@@ -1,48 +1,57 @@
-<h1> 作業途中管理者用ポイ活サービス詳細 </h1>
+<h1 class="mb-4 ms-3">管理者用ポイ活サービス詳細</h1>
 
-<p>
-  <strong>投稿者名:</strong>
-  <%= @post.user.name %>
-</p>
+<div class="card p-3 ms-3">
+  <p class="d-flex align-items-center gap-3">
+    <span>
+      <strong>投稿者名:</strong>
+      <span class="ms-2"><%= @post.user.name %></span>
+    </span>
+  </p>
+  
+  <p>
+    <strong>投稿日:</strong>
+    <%= @post.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+  </p>
 
-<p>
-  <strong>投稿日:</strong>
-  <%= @post.created_at.strftime("%Y年%m月%d日 %H:%M") %>
-</p>
+  <p>
+    <strong>サービス名:</strong>
+    <%= @post.title %>
+  </p>
 
-<p>
-  <strong>サービス名:</strong>
-  <%= @post.title %>
-</p>
+  <p>
+    <strong>サービスの特徴や使いやすさ:</strong>
+    <%= @post.body %>
+  </p>
 
-<p>
-  <strong>サービスの特徴や使いやすさ:</strong>
-  <%= @post.body %>
-</p>
+  <p>
+    <strong>ポイント還元率:</strong>
+    <%= @post.reward_rate.presence || "未設定" %> 
+  </p>
 
-<p>
-  <strong>ポイント還元率:</strong>
-  <%= @post.reward_rate.presence || "未設定" %> 
-</p>
+  <p>
+    <strong>関連キーワード（タグ）:</strong>
+    <% if @post.tag_list.present? %>
+      <%= @post.tag_list.join("、") %>
+    <% else %>
+      <span>なし</span>
+    <% end %>
+  </p>
 
-<p>
-  <strong>関連キーワード（タグ）:</strong>
-  <% if @post.tag_list.present? %>
-    <%= @post.tag_list.join("、") %>
-  <% else %>
-    <span></span>
-  <% end %>
-</p>
+  <p>
+    <strong>評価:</strong>
+    <div id="post_raty"></div>
+  </p>
 
-<p>
-  <strong>評価:</strong>
-  <div id="post_raty"></div>
-</p>
+  <p>
+    <strong>いいね数:</strong>
+    <%= @post.favorites.count %>
+  </p>
+</div>
 
-<p>
-  <strong>いいね数:</strong>
-  <%= @post.favorites.count %>
-</p>
+<div class="mt-3 ms-3">
+  <%= link_to '一覧に戻る', admin_reviews_path, class: "btn btn-secondary" %>
+  <%= link_to '削除する', admin_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger ms-2" %>
+</div>
 
 <script>
 if (document.getElementById("post_raty") != null) {
@@ -58,7 +67,4 @@ if (document.getElementById("post_raty") != null) {
 }
 </script>
 
-<p>
-  <%= link_to '一覧に戻る', admin_reviews_path %>
-  <%= link_to '削除する', admin_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-</p>
+
