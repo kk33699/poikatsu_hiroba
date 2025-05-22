@@ -68,3 +68,24 @@ if (document.getElementById("post_raty") != null) {
 </script>
 
 
+<div class="card p-3 ms-3 mt-4">
+  <h2 class="mb-4 ms-3">コメント一覧</h2>
+
+  <div class="p-3">
+    <% @post.comments.each do |comment| %>
+      <div class="border-bottom py-2">
+        <p>
+          <strong><%= comment.user.name %></strong>：
+          <%= comment.content %><br>
+          <small class="text-muted"><%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></small>
+        </p>
+
+        <%= link_to '削除', admin_post_comment_path(@post, comment),
+            method: :delete,
+            data: { confirm: '本当に削除しますか？' },
+            class: "btn btn-danger btn-sm" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
