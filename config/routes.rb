@@ -16,9 +16,9 @@ Rails.application.routes.draw do
     get 'users', to: 'users#index'
     resources :users, only: [:index, :show, :destroy]
     resources :reviews, only: [:index, :destroy] # レビュー管理者
-    resources :posts, only: [:show, :destroy] do # 管理者用：投稿詳細ページ＆削除
-      resources :comments, only: [:destroy], module: :posts # 管理者用コメント削除
-    end
+    resources :posts, only: [:show, :destroy] # 管理者用：投稿詳細ページ＆削除　# do これは管理者用コメント削除で必要だが一旦保留
+      # resources :comments, only: [:destroy], module: :posts 管理者用コメント削除一旦コメントアウト
+      # end 管理者用コメント削除一旦コメントアウト
   end
 
   # エンドユーザーの管理
