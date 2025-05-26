@@ -6,7 +6,7 @@
   <% if @posts.present? %>
     <ul>
       <% @posts.each do |post| %>
-        <li><%= post.title %></li>
+        <li><%= link_to post.title, admin_post_path(post) %></li>
       <% end %>
     </ul>
   <% else %>
