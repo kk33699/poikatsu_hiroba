@@ -1,1 +1,70 @@
-管理者編集
+<h1 class="mb-4 ms-3">管理者用投稿編集</h1>
+
+<%= form_with(model: @post, url: admin_post_path(@post), method: :patch, local: true) do |form| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation" class="ms-4">
+      <h2><%= @post.errors.count %> 件のエラーが発生しました:</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="ms-4">
+    <!-- サービス名 -->
+    <div class="mb-4">
+      <%= form.label :title, "サービス名" %>
+      <%= form.text_field :title, class: "form-control w-50" %>
+    </div>
+
+    <!-- サービスの特徴や使いやすさ -->
+    <div class="mb-4">
+      <%= form.label :body, "サービスの特徴や使いやすさ" %>
+      <%= form.text_area :body, class: "form-control w-50" %>
+    </div>
+
+    <!-- ポイント還元率 -->
+    <div class="mb-4">
+      <%= form.label :reward_rate, "ポイント還元率" %>
+      <%= form.select :reward_rate, ["高還元率（1%以上）", "中還元率（0.5%〜1%未満）", "低還元率（0.5%未満）", "その他"], { prompt: "選択してください" }, class: "form-select w-50" %>
+    </div>
+
+    <!-- タグ -->
+    <div class="mb-4">
+      <%= form.label :tag_list, "関連キーワード（タグ）" %>
+      <%= form.text_field :tag_list, class: "form-control w-50" %>
+    </div>
+
+    <!-- レビュー -->
+    <div class="mb-4">
+      <%= form.label :rate, "5段階評価" %>
+      <div id="post_raty"></div>
+      <%= form.hidden_field :rate, id: "rate_value" %>
+    </div>
+
+    <!-- ボタン -->
+    <div class="mb-4">
+      <%= form.submit "更新する", class: "btn btn-primary" %>
+      <%= link_to '投稿詳細に戻る', admin_post_path(@post), class: "btn btn-secondary ms-2" %>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  if(document.getElementById("post_raty") != null){
+     document.querySelector("#post_raty").textContent = '';
+     let elem = document.querySelector("#post_raty");
+     let opt = {
+       starOff: "<%= asset_path('star-off.png') %>",
+       starOn: "<%= asset_path('star-on.png') %>",
+       scoreName: "post[rate]",
+       score: <%= @post.rate || 0 %>,
+       click: function(score) {
+         document.querySelector("#rate_value").value = score;
+       }
+     };
+     raty(elem, opt);
+  }
+</script>
