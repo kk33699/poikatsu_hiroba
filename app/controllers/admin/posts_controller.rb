@@ -12,7 +12,7 @@ class Admin::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to admin_post_path(@post)
+      redirect_to admin_post_path(@post), notice: "投稿が編集されました。"
     else
       render :edit
     end

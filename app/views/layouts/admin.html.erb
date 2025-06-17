@@ -28,14 +28,11 @@
     </div>
   </nav>
 
-  <div class="flash-message">
-    <%= flash[:notice] %>
-  </div>
-
-  <div class="flash-message">
-    <%= flash[:alert] %>
-  </div>
-
+  <!-- フラッシュメッセージ -->
+  <% flash.each do |key, message| %>
+    <p class="<%= key %>"><%= message %></p>
+  <% end %>
+  
   <div class="container mt-4">
     <%= yield %>
   </div>
