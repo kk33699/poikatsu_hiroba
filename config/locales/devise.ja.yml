@@ -1,5 +1,8 @@
-ja:
-  devise:
-    sessions:
-      signed_in: "ログインしました。"
-      signed_out: "ログアウトしました。"
+ja: {}
+
+#　下記エラー発生のためデフォルト（英語）に戻したためコメントアウト
+# ja:
+#   devise:
+#     sessions:
+#       signed_in: "ログインしました。"
+#       signed_out: "ログアウトしました。"
