@@ -1,8 +1,8 @@
 <h2 class="text-center mb-1">新規登録</h2>
 
-<div class="container d-flex justify-content-center">
+<div class="container">
   <div class="row justify-content-center">
-    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
       <% if resource.errors.any? %>
         <div>
           <h5><%= pluralize(resource.errors.count, "error") %> prohibited this user from being saved:</h5>
@@ -40,7 +40,7 @@
         </div>
 
         <div class="actions text-center mt-4">
-          <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+          <%= f.submit "Sign up", class: "btn btn-primary w-100" %>
         </div>
       <% end %>
 
