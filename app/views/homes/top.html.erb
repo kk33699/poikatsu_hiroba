@@ -1,19 +1,23 @@
-<div style="margin-left: 30%; text-align: left; margin-top: 50px;">
-  <h1>ポイ活広場へようこそ！</h1>
-  <p>
-    この「ポイ活広場」は、ポイントサービスの還元率や使いやすさを比較し、あなたに最適なサービスを見つけるためのレビューサイトです。
-  </p>
-  <p>
-    ユーザー同士でレビューや評価を共有しながら、効率よくお得を実現しましょう！すべてのポイ活ユーザーをサポートします。
-  </p>
-  <p>
-    さあ、あなたにぴったりのポイントサービスを探し始めましょう！
-  </p>
-</div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-6">
+      <h1 class="text-center mb-4">ポイ活広場へようこそ！</h1>
+      <p>
+        この「ポイ活広場」は、ポイントサービスの還元率や使いやすさを比較し、あなたに最適なサービスを見つけるためのレビューサイトです。
+      </p>
+      <p>
+        ユーザー同士でレビューや評価を共有しながら、効率よくお得を実現しましょう！すべてのポイ活ユーザーをサポートします。
+      </p>
+      <p>
+        さあ、あなたにぴったりのポイントサービスを探し始めましょう！
+      </p>
 
-<!--  管理者ログインリンク 管理者アクセスしやすいように（本来削除） -->
-<% unless user_signed_in? || admin_signed_in? %>
-  <div style="margin-left: 30%; text-align: right; margin-top: 20px;">
-    <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-outline-secondary" %>
+      <!--  管理者ログインリンク 管理者アクセスしやすいように（本来削除） -->
+      <% unless user_signed_in? || admin_signed_in? %>
+        <div class="text-end mt-4">
+          <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-outline-secondary" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>

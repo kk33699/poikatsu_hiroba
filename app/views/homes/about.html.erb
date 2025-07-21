@@ -1,17 +1,23 @@
-<div style="margin-left: 30%; text-align: left; margin-top: 50px;">
-  <h1>「ポイ活広場」とは？</h1>
-  <p>
-    「ポイ活広場」は、ポイント還元率や使いやすさなど、各種ポイントサービスを評価し、比較するためのレビューサイトです。
-  </p>
-  <p>
-    ポイントサービスの還元率や使いやすさは、それぞれ大きく異なります。情報が分散して比較しづらいという課題を解決するために、このサイトを作成しました。
-  </p>
-  <p>
-    「ポイ活広場」で、自分にぴったりのポイントサービスを見つけて、日々の生活をさらにお得にしましょう！
-  </p>
-  <p>
-    <% if user_signed_in? %>
-      <%= link_to "マイページへ", mypage_users_path, class: "btn btn-outline-secondary ms-2" %>
-    <% end %>
-  </p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-6">
+      <h1 class="text-center mb-4">「ポイ活広場」とは？</h1>
+      
+      <p>
+        「ポイ活広場」は、ポイント還元率や使いやすさなど、各種ポイントサービスを評価し、比較するためのレビューサイトです。
+      </p>
+      <p>
+        ポイントサービスの還元率や使いやすさは、それぞれ大きく異なります。情報が分散して比較しづらいという課題を解決するために、このサイトを作成しました。
+      </p>
+      <p>
+        「ポイ活広場」で、自分にぴったりのポイントサービスを見つけて、日々の生活をさらにお得にしましょう！
+      </p>
+
+      <% if user_signed_in? %>
+        <div class="text-end mt-4">
+          <%= link_to "マイページへ", mypage_users_path, class: "btn btn-outline-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
